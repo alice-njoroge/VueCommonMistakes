@@ -10,11 +10,9 @@ const randomNum = () => {
   numbers.value.ourTeam = Math.floor(Math.random() * 10);
   numbers.value.otherTeam = Math.floor(Math.random() * 10);
 }
-watch(numbers,
-    () => console.log('the object changed', numbers.value),
-    {
-      deep: true
-    } // you have to add this option when watching the whole object
+watch(
+    () => numbers.value.ourTeam, //here I don't need the deep option because I am using the getter to fetch a specific key
+    (ourScore) => console.log('our team score has changed', ourScore),
 )
 </script>
 
