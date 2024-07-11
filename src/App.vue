@@ -1,18 +1,13 @@
 <script setup>
 import {ref, watch} from "vue";
 
-const numbers = ref({
-  ourTeam: 3,
-  otherTeam: 4
-});
+const numbers = ref([1, 2, 3, 4, 5]);
 
 const randomNum = () => {
-  numbers.value.ourTeam = Math.floor(Math.random() * 10);
-  numbers.value.otherTeam = Math.floor(Math.random() * 10);
+  numbers.value = [...numbers.value,  Math.floor(Math.random() * 10)]
 }
-watch(
-    () => numbers.value.ourTeam, //here I don't need the deep option because I am using the getter to fetch a specific key
-    (ourScore) => console.log('our team score has changed', ourScore),
+watch(numbers,
+    () => console.log('our team score has changed'),
 )
 </script>
 
