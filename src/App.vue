@@ -1,12 +1,17 @@
 <script setup>
-import {ref, watchEffect} from "vue";
+import {ref, watch} from "vue";
 
 const numbers = ref([1, 2, 3, 4]);
 
 const randomNum = () => {
-  numbers.value.push(Math.floor(Math.random() * 10));
+  numbers.value = Math.floor(Math.random() * 10);
 }
-watchEffect(() => console.log(`New Numbers Added ${numbers.value}`),)
+watch(
+    ()=> numbers,
+    () => console.log(`New Numbers Added ${numbers.value}`), {
+      deep: true
+    }
+)
 </script>
 
 <template>
